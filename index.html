@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amous Wong - Portfolio</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Smooth Scrolling */
@@ -38,6 +36,10 @@
         }
         .animate-slide-in { animation: slideIn 0.4s ease-out forwards; }
 
+        /* Blinking Cursor for Typewriter */
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
         /* Selection Colors - Techy Cyan */
         ::selection { background-color: #06b6d4; color: #0f172a; }
         
@@ -54,15 +56,12 @@
 </head>
 <body class="bg-slate-950 text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-cyan-900 selection:text-cyan-100">
 
-    <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full bg-slate-950/80 backdrop-blur-md shadow-lg shadow-slate-900/50 z-50 border-b border-slate-800 h-16 md:h-20 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-            <!-- Logo with Hover Glow -->
             <button onclick="navigateTo('home')" class="flex-shrink-0 font-bold text-xl md:text-2xl tracking-tighter text-white transition-all z-50 focus:outline-none group hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]">
                 Amous<span class="text-emerald-400 group-hover:text-cyan-400 transition-colors duration-300">.</span>
             </button>
             
-            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <button onclick="navigateTo('home')" class="nav-link text-slate-400 hover:text-cyan-400 px-2 py-2 text-sm font-medium transition-colors relative group focus:outline-none" data-page="home">
                     Home
@@ -82,7 +81,6 @@
                 </button>
             </div>
 
-            <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center z-50">
                 <button onclick="toggleMenu()" class="text-slate-400 hover:text-cyan-400 focus:outline-none p-2 rounded-md hover:bg-slate-900 transition-colors" aria-label="Toggle menu">
                     <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
@@ -91,7 +89,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="hidden fixed top-[64px] left-0 w-full h-[calc(100vh-64px)] bg-slate-950 z-40 overflow-y-auto no-scrollbar border-t border-slate-800 shadow-xl transition-all duration-300 ease-in-out origin-top transform">
             <div class="flex flex-col w-full px-4 py-4 pb-20 space-y-2 text-center">
                 <button onclick="navigateTo('home')" class="block w-full px-5 py-4 rounded-xl text-lg font-bold text-slate-300 hover:text-cyan-400 hover:bg-slate-900 transition-colors border-b border-slate-900">Home</button>
@@ -102,19 +99,16 @@
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="pt-24 pb-12 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center">
         
-        <!-- HOME PAGE -->
         <div id="home" class="page-section hidden fade-in flex flex-col justify-center items-center md:items-start md:text-left min-h-[60vh] md:min-h-[75vh]">
             <div class="w-full max-w-4xl relative">
-                <!-- Background Glow Effect with Floating Animation -->
                 <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none animate-float"></div>
                 <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none animate-float-delayed"></div>
 
                 <div class="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-slate-900 border border-slate-800 text-cyan-400 text-xs sm:text-sm font-bold mb-6 shadow-lg shadow-cyan-900/20 fade-in mx-auto md:mx-0 max-w-full hover:border-cyan-500/30 transition-colors duration-300">
                     <span class="w-2 h-2 flex-shrink-0 rounded-full bg-emerald-400 mr-2 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></span>
-                    <span class="truncate">Digital Strategy meets Creative Design</span>
+                    <span class="truncate" id="typewriter-text"></span><span class="cursor-blink">|</span>
                 </div>
                 
                 <h1 class="fade-in delay-100 text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 md:mb-8 leading-tight">
@@ -123,7 +117,7 @@
                 </h1>
                 
                 <p class="fade-in delay-200 max-w-2xl text-base sm:text-xl text-slate-400 mb-8 md:mb-10 leading-relaxed mx-auto md:mx-0 font-light">
-                    I manage the full lifecycle of digital campaigns to drive business growth. My expertise lies in executing comprehensive strategies that encompass both <span class="text-slate-200 font-medium">Paid Media (SEM)</span> and <span class="text-slate-200 font-medium">Organic Search (SEO)</span>.
+                    I execute comprehensive strategies that bridge <span class="text-slate-200 font-medium border-b border-cyan-500/30">Paid Media</span> and <span class="text-slate-200 font-medium border-b border-emerald-500/30">Organic Search</span> to drive real business growth.
                 </p>
                 
                 <div class="fade-in delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center md:items-start justify-center md:justify-start">
@@ -138,31 +132,44 @@
             </div>
         </div>
 
-        <!-- ABOUT PAGE -->
         <div id="about" class="page-section hidden fade-in">
             
-            <!-- 1. Bio Section -->
             <div class="mb-12 md:mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6 flex items-center gap-3">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8 flex items-center gap-3">
                     About Me
                 </h2>
-                <div class="prose prose-invert prose-base md:prose-lg text-slate-400 max-w-4xl">
-                    <p class="leading-relaxed mb-4">I am a digital professional with a unique blend of analytical and creative skills. My background in <strong class="text-cyan-400">Information Management</strong> and <strong class="text-cyan-400">Internet Services</strong> allows me to approach marketing with a technical mindset.</p>
-                    <p class="leading-relaxed">Currently, I help major retail brands like <strong class="text-white">Eu Yan Sang</strong> and <strong class="text-white">Sasa Global</strong> navigate the digital landscape. Whether it's optimizing search rankings, managing complex ad spends, or designing intuitive apps, I focus on results that drive growth.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/30 transition-all">
+                        <i data-lucide="bar-chart-2" class="w-8 h-8 text-cyan-400 mb-3"></i>
+                        <h3 class="font-bold text-white text-lg mb-1">Data-Driven</h3>
+                        <p class="text-sm text-slate-400">Marketing decisions backed by analytics, not just intuition.</p>
+                    </div>
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-all">
+                        <i data-lucide="users" class="w-8 h-8 text-emerald-400 mb-3"></i>
+                        <h3 class="font-bold text-white text-lg mb-1">User-Centric</h3>
+                        <p class="text-sm text-slate-400">Designs and campaigns optimized for real human behavior.</p>
+                    </div>
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-blue-500/30 transition-all">
+                        <i data-lucide="code-2" class="w-8 h-8 text-blue-400 mb-3"></i>
+                        <h3 class="font-bold text-white text-lg mb-1">Technical</h3>
+                        <p class="text-sm text-slate-400">Bridging the gap between marketing goals and dev implementation.</p>
+                    </div>
+                </div>
+
+                <div class="prose prose-invert prose-base text-slate-400 max-w-4xl">
+                    <p class="leading-relaxed">Currently helping major retail brands like <strong class="text-white">Eu Yan Sang</strong> and <strong class="text-white">Sasa Global</strong> dominate the digital landscape through optimized search rankings and high-efficiency ad spend.</p>
                 </div>
             </div>
 
-            <!-- 2. Grid Layout -->
             <div class="grid md:grid-cols-2 gap-8 items-start pb-20">
                 
-                <!-- Left Column: Work Experience -->
                 <div class="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-800 h-full hover:border-slate-700 hover:shadow-lg transition-all duration-300">
                     <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-2">
                         <i data-lucide="briefcase" class="text-emerald-400 w-5 h-5"></i> Experience
                     </h3>
                     <div class="space-y-10">
                         
-                        <!-- Job 1 -->
                         <div class="relative pl-8 border-l border-slate-700 group">
                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] group-hover:scale-125 transition-transform duration-300"></div>
                             <div class="mb-1 text-xs font-bold text-emerald-400 uppercase tracking-wider">Sep 2024 - Present</div>
@@ -173,7 +180,6 @@
                             </p>
                         </div>
 
-                        <!-- Job 2 -->
                         <div class="relative pl-8 border-l border-slate-700 group">
                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-slate-600 group-hover:bg-slate-400 transition-colors duration-300"></div>
                             <div class="mb-1 text-xs font-bold text-slate-500 uppercase tracking-wider">Aug 2022 - Aug 2024</div>
@@ -187,10 +193,8 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Education & Skills -->
                 <div class="space-y-8">
                     
-                    <!-- Education Block -->
                     <div class="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-800 hover:border-slate-700 hover:shadow-lg transition-all duration-300">
                         <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
                             <i data-lucide="graduation-cap" class="text-cyan-400 w-5 h-5"></i> Education
@@ -207,7 +211,6 @@
                         </div>
                     </div>
 
-                    <!-- Skills Block -->
                     <div class="bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 hover:shadow-lg transition-all duration-300">
                         <div class="bg-slate-900 p-6 border-b border-slate-800">
                             <h3 class="text-xl font-bold text-white flex items-center gap-2">
@@ -232,7 +235,6 @@
             </div>
         </div>
 
-        <!-- PROJECTS PAGE -->
         <div id="projects" class="page-section hidden fade-in">
             <div class="mb-8 md:mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3 md:mb-4">Featured Case Studies</h2>
@@ -241,7 +243,6 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 pb-20 grid-flow-row-dense relative">
                 
-                <!-- Card Template (Eu Yan Sang - SEM) -->
                 <div class="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] transition-all duration-300 flex flex-col h-auto overflow-hidden hover:-translate-y-1 hover:scale-[1.01]">
                     <div class="h-1 w-full bg-gradient-to-r from-blue-600 to-cyan-400"></div>
                     <div class="p-5 md:p-8 flex-1 flex flex-col">
@@ -251,7 +252,6 @@
                         </div>
                         <p class="text-sm md:text-base text-slate-400 mb-6 leading-relaxed">Prioritized maximizing Conversion and ROAS, with a secondary objective of driving qualified website traffic.</p>
                         
-                        <!-- Hidden Content -->
                         <div id="project-euyansang-sem" class="hidden border-t border-slate-800 pt-6 mb-4 text-sm text-slate-400 space-y-6">
                             
                             <div>
@@ -269,15 +269,15 @@
                                 <div class="space-y-6">
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">ROAS</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+81%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="81">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Revenue</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+119%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="119">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Clicks</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+65%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="65">+0%</p>
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +296,6 @@
                     </div>
                 </div>
 
-                <!-- Card Template (Eu Yan Sang - SEO) -->
                 <div class="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all duration-300 flex flex-col h-auto overflow-hidden hover:-translate-y-1 hover:scale-[1.01]">
                     <div class="h-1 w-full bg-gradient-to-r from-emerald-600 to-teal-400"></div>
                     <div class="p-5 md:p-8 flex-1 flex flex-col">
@@ -306,7 +305,6 @@
                         </div>
                         <p class="text-sm md:text-base text-slate-400 mb-6 leading-relaxed">Executed a long-term organic search strategy. Optimized site architecture and content to improve rankings for non-branded keywords.</p>
                         
-                        <!-- Hidden Content -->
                         <div id="project-euyansang-seo" class="hidden border-t border-slate-800 pt-6 mb-4 text-sm text-slate-400 space-y-6">
                             
                             <div>
@@ -324,24 +322,23 @@
                                 <div class="space-y-6">
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Organic Traffic</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+12,000<span class="text-xl text-slate-500 font-bold ml-1">/mo</span></p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="12000" data-suffix="/mo">+0</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Targeted Keywords (SERP 1st Page)</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">40<span class="text-3xl text-slate-500">/50</span></p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]"><span class="count-up" data-target="40">0</span><span class="text-3xl text-slate-500">/50</span></p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Organic Keywords</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+117%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="117">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">New Audience (GA4)</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+34%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="34">+0%</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Content Samples -->
                             <div>
                                 <strong class="block text-white mb-3 text-base">Content Samples</strong>
                                 <div class="flex flex-col gap-2">
@@ -383,7 +380,6 @@
                     </div>
                 </div>
 
-                <!-- Card Template (Sasa) -->
                 <div class="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] transition-all duration-300 flex flex-col h-auto overflow-hidden hover:-translate-y-1 hover:scale-[1.01]">
                     <div class="h-1 w-full bg-gradient-to-r from-pink-600 to-rose-400"></div>
                     <div class="p-5 md:p-8 flex-1 flex flex-col">
@@ -393,7 +389,6 @@
                         </div>
                         <p class="text-sm md:text-base text-slate-400 mb-6 leading-relaxed">Orchestrated high-budget global campaigns across key markets (US, UK, AU, CA). Navigated complex cross-border dynamics, including regional tax laws and seasonal trends, to maximize ad efficiency and ROAS.</p>
                         
-                        <!-- Hidden Content -->
                         <div id="project-sasa" class="hidden border-t border-slate-800 pt-6 mb-4 text-sm text-slate-400 space-y-6 animate-fade-in">
                             
                             <div>
@@ -411,11 +406,11 @@
                                 <div class="space-y-6">
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">ROAS</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+22%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="22">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Revenue</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+15%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="15">+0%</p>
                                     </div>
                                 </div>
                             </div>
@@ -434,7 +429,6 @@
                     </div>
                 </div>
 
-                <!-- Card Template (AUSupreme) -->
                 <div class="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300 flex flex-col h-auto overflow-hidden hover:-translate-y-1 hover:scale-[1.01]">
                     <div class="h-1 w-full bg-gradient-to-r from-orange-600 to-amber-400"></div>
                     <div class="p-5 md:p-8 flex-1 flex flex-col">
@@ -444,7 +438,6 @@
                         </div>
                         <p class="text-sm md:text-base text-slate-400 mb-6 leading-relaxed">Revitalized ad performance for this Hong Kong listed brand. Restructured Meta & Google Ads accounts to eliminate waste and scale revenue.</p>
                         
-                        <!-- Hidden Content -->
                         <div id="project-ausupreme" class="hidden border-t border-slate-800 pt-6 mb-4 text-sm text-slate-400 space-y-6 animate-fade-in">
                             
                             <div>
@@ -462,15 +455,15 @@
                                 <div class="space-y-6">
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Purchase Volume</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+56%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="56">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Revenue</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+48%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="48">+0%</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">ROAS</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+32%</p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="32">+0%</p>
                                     </div>
                                 </div>
                             </div>
@@ -489,7 +482,6 @@
                     </div>
                 </div>
 
-                <!-- Card Template (Asics) -->
                 <div class="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-indigo-500/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] transition-all duration-300 flex flex-col h-auto overflow-hidden hover:-translate-y-1 hover:scale-[1.01]">
                     <div class="h-1 w-full bg-gradient-to-r from-indigo-600 to-violet-400"></div>
                     <div class="p-5 md:p-8 flex-1 flex flex-col">
@@ -499,7 +491,6 @@
                         </div>
                         <p class="text-sm md:text-base text-slate-400 mb-6 leading-relaxed">Executed comprehensive SEO strategy to improve organic search rankings. Worked on technical SEO fixes and content optimization.</p>
                         
-                        <!-- Hidden Content -->
                         <div id="project-asics" class="hidden border-t border-slate-800 pt-6 mb-4 text-sm text-slate-400 space-y-6 animate-fade-in">
                             
                             <div>
@@ -517,16 +508,15 @@
                                 <div class="space-y-6">
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Organic Traffic</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">+15,000<span class="text-xl text-slate-500 font-bold ml-1">/mo</span></p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] count-up" data-target="15000" data-suffix="/mo">+0</p>
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Targeted Keywords (1st Page)</p>
-                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]">35<span class="text-3xl text-slate-500">/50</span></p>
+                                        <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 tracking-tighter drop-shadow-[0_0_10px_rgba(34,211,238,0.3)]"><span class="count-up" data-target="35">0</span><span class="text-3xl text-slate-500">/50</span></p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Content Samples -->
                             <div>
                                 <strong class="block text-white mb-3 text-base">Content Samples</strong>
                                 <div class="flex flex-col gap-2">
@@ -564,7 +554,6 @@
             </div>
         </div>
 
-        <!-- CONTACT PAGE -->
         <div id="contact" class="page-section hidden fade-in flex flex-col items-center justify-center min-h-[60vh]">
             <div class="w-full max-w-3xl text-center">
                 <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Let's Connect</h2>
@@ -603,7 +592,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <footer class="bg-slate-950 py-8 border-t border-slate-800 mt-auto">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs md:text-sm gap-4">
                 <p>© <span id="year"></span> Amous Wong. All rights reserved.</p>
@@ -616,13 +604,47 @@
         </footer>
     </main>
 
-    <!-- Logic Script -->
     <script>
         // Initialize Icons
         lucide.createIcons();
 
         // Set Year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Typewriter Effect
+        const typeText = ["Digital Strategy", "Creative Design", "Growth Hacking", "SEO & SEM"];
+        let typeIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentText = typeText[typeIndex];
+            const typeElement = document.getElementById("typewriter-text");
+            
+            if (isDeleting) {
+                typeElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeIndex = (typeIndex + 1) % typeText.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Start Typewriter
+        window.addEventListener('load', typeWriter);
 
         // Define Reusable Classes - Dark Mode Updated
         const skillTagClass = "px-3 py-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 text-xs md:text-sm font-semibold hover:border-cyan-500/50 hover:text-cyan-400 hover:shadow-[0_0_10px_rgba(6,182,212,0.1)] transition-all cursor-default select-none hover:-translate-y-0.5 hover:bg-slate-800 duration-300";
@@ -658,6 +680,9 @@
                 targetContent.classList.add('animate-slide-in');
                 btn.innerHTML = 'Read Less <i data-lucide="chevron-up" class="ml-1 w-4 h-4 inline"></i>';
                 
+                // Animate Numbers
+                animateNumbers(targetContent);
+
                 setTimeout(() => {
                     const navbarHeight = 80; 
                     const elementPosition = targetCard.getBoundingClientRect().top;
@@ -666,6 +691,30 @@
                 }, 100);
             }
             lucide.createIcons();
+        }
+
+        // Number Counter Animation
+        function animateNumbers(container) {
+            const counters = container.querySelectorAll('.count-up');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '%';
+                const duration = 1500; // ms
+                const stepTime = 20;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.innerText = "+" + target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = "+" + Math.ceil(current) + suffix;
+                    }
+                }, stepTime);
+            });
         }
 
         // Navigation State
